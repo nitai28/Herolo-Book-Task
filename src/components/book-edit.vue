@@ -5,7 +5,7 @@
             <div class="modal-card">
                 <header class="modal-card-head">
                     <p v-if="!addMode" class="modal-card-title">Book Edit</p>
-                    <p v-if="addMode" class="modal-card-title">Add Book</p>
+                    <p v-else class="modal-card-title">Add Book</p>
                     <button class="delete" aria-label="close" @click="closeModal()"></button>
                 </header>
                 <section class="modal-card-body">
@@ -17,14 +17,14 @@
                         </div>
                         <label for="Author">Author</label>
                         <input class="input" id="Author" type="text" v-model="bookEdit.authorName">
-                        <upload-image v-if="addMode" url="" name="" max_files=""></upload-image>
+                        <!--<upload-image v-if="addMode" url="" name="" max_files="" v-model="bookEdit.imgSrc"></upload-image>-->
                         <label for="Desctiption">Desctiption</label>
                         <textarea class="textarea" id="Desctiption" type="text"
                                   v-model="bookEdit.description"></textarea>
                         <footer class="modal-card-foot">
                             <button v-if="!addMode" type="submit" class="button is-success">Save changes</button>
-                            <button v-if="addMode" type="submit" class="button is-success">Add book</button>
-                            <button class="button" @click="closeModal()">Cancel</button>
+                            <button v-else type="submit" class="button is-success">Add book</button>
+                            <button type="button" class="button" @click="closeModal()">Cancel</button>
                         </footer>
                     </form>
                 </section>
@@ -53,15 +53,9 @@
             }
         },
         methods: {
-            // addBook() {
-            //     this.book.isDone = false;
-            //     this.book.id = '';
-            //
-            //     this.$store.dispatch({ type: 'saveTodo',book: this.book })
-            //     this.book = { id: '', text: ' ', isDone: '' };
-            // },
+
             editBook() {
-                this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
+               this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
                     .then(() => {
                         this.closeModal();
                         this.$router.push('/books')
@@ -70,9 +64,13 @@
 
             closeModal() {
                 this.$parent.showModal = false;
+                if(this.addMode){
+                   this.$parent.toAdd=false
+                }
             }
 
         },
+
         components: {
             DatePicker,
             bookService,

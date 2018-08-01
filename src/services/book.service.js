@@ -25,10 +25,10 @@ function loadDB() {
 
 function getEmptyObj() {
     return {
-        id: Date.now(),
+        id: '',
         authorName: '',
         publishedDate: '',
-        imgSrc: '',
+        imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Naaria3.jpg',
         bookTitle: '',
         description: ''
     }

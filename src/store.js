@@ -8,7 +8,7 @@ export default new Vuex.Store({
     strict: true,
     state: {
         books: [],
-        currentBook:{}
+        currentBook: {}
     },
     mutations: {
         changeFilter(state, {filter}) {
@@ -21,7 +21,7 @@ export default new Vuex.Store({
             state.books = books;
         },
         setSelectedBook(state, {id}) {
-            let book=state.books.find(book => book.id=== id)
+            let book = state.books.find(book => book.id === id)
             state.currentBook = book;
         },
         deleteBook(state, {id}) {
@@ -60,17 +60,17 @@ export default new Vuex.Store({
                 if (isEdit) {
                     store.commit({type: "updateBook", book});
                 }
-                    // else {
-            //         store.commit({type: "addBook", book});
-            //         store.commit({type: "updateActions", name: "addBook"});
-            //     }
-            //     return book;
+                else {
+                    store.commit({type: "addBook", book});
+                    store.commit({type: "updateActions", name: "addBook"});
+                }
+                return book;
             });
         },
 
 
     },
-    getters:{
+    getters: {
         booksForDisplay(state) {
             return state.books;
         },
