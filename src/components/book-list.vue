@@ -1,60 +1,62 @@
 <template>
-        <section class="todo-list">
-            <input name="filterBtn" checked="checked" id="all" type="radio" @click="changeFilter('All')" />
-            <label for="all"> All</label>
-            <input name="filterBtn" id="active" @click="changeFilter('Active')" type="radio"/>
-            <label for="active"> Active</label>
-            <input name="filterBtn" id="done" @click="changeFilter('Done')" type="radio"/>
-            <label for="done"> Done</label>
-            <div>
-            <input type="search" @input="SearchTodos($event.target.value)"/>
-            </div>
+    <section class="todo-list">
+        <div v-if="!selectedBook">
+            <h1>Herolo Books</h1>
+            <button  @click="toAdd=!toAdd">Add Book</button>
+            <book-edit :addMode="toAdd" v-if="toAdd"></book-edit>
             <ul>
-                <li  v-for="(todo) in todos" :key="todo.id" class="box todo-li"  :class="{done:todo.isDone}">
-                    <todo-item :currTodo="todo"></todo-item>
+                <li v-for="(book,idx) in books" :key="book.id">
+                    <img :src="book.imgSrc" alt="" @click="updateCurrentBook(book.id)">
                 </li>
             </ul>
-        </section>
+
+        </div>
+        <book-details v-if="selectedBook" :book="currentBook" @toggleSelectedBook="selectedBook=!selectedBook"></book-details>
+    </section>
 
 
 </template>
 
 <script>
-import todoItem from './todo-item.vue'
+    import bookDetails from './book-details.vue'
+    import bookEdit from './book-edit.vue'
 
-export default {
-    data() {
-        return {
-            filter: 'All',
-            todo: {}
-        }
-    },
-    created() {
-        this.$store.dispatch({ type: 'loadTodos' })
-    },
-    computed: {
-        todos() {
-            return this.$store.state.todos;
-        }
-    },
-    methods: {
-        changeFilter(filter) {
-            this.$store.commit({ type: 'changeFilter', filter: filter });
-            this.$store.dispatch({ type: 'loadTodos' })
 
-            // this.$store.dispatch({type:'changeFilter' ,filter:filter});
+    export default {
+        name: 'book-list',
+        data() {
+            return {
+                selectedBook: false,
+                currentBook: {},
+                toAdd:false,
+            }
+        },
+        methods: {
+            updateCurrentBook(id) {
+                this.$store.commit({type: 'setSelectedBook', id: id});
+                this.currentBook = this.$store.state.currentBook;
+                this.selectedBook = !this.selectedBook;
+                // this.$router.push('/'+this.currentBook.id)
+            },
+
 
         },
-        SearchTodos(filter) {
-            this.$store.commit({ type: 'changeFilter', filter: filter });
-            this.$store.dispatch({ type: 'loadTodos' })
+        created() {
+
+            this.$store.dispatch({type: 'loadBooks'});
+
+        },
+        computed: {
+            books() {
+                return this.$store.getters.booksForDisplay;
+            }
+        },
+
+        components: {
+            bookDetails,
+            bookEdit
         }
-    },
-    
-    components: {
-        todoItem
     }
-}    
 </script>
 
 <style>

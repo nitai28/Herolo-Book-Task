@@ -1,10 +1,29 @@
 <template>
-    $END$
+    <section class="book-app">
+        <nav-bar></nav-bar>
+        <book-list></book-list>
+
+    </section>
 </template>
 
 <script>
+    import navBar from '../components/nav/nav';
+    import bookList from '../components/book-list';
+
     export default {
-        name: "book-app"
+        name: "book-app",
+        // data() {
+        //     return {
+        //         selectBook: {}
+        //     }
+        // },
+        methods: {},
+        components: {
+            navBar,
+            bookList
+
+        }
+
     }
 </script>
 

@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "authorName": "Harlen Coben",
+    "publishedDate": "11-09-2008",
+    "imgSrc": "./img/books/DontLetGo.jpg",
+    "bookTitle": "Don't Let Go",
+    "description": "Suburban New Jersey Detective Napoleon “Nap” Dumas hasn't been the same since senior year of high school, when his twin brother Leo and Leo’s girlfriend Diana were found dead on the railroad tracks—and Maura, the girl Nap considered the love of his life, broke up with him and disappeared without explanation. For fifteen years, Nap has been searching, both for Maura and for the real reason behind his brother's death. And now, it looks as though he may finally find what he's been looking for. "
+  },
+  {
+    "id": 2,
+    "authorName": "Harlen Coben",
+    "publishedDate": "11-09-2008",
+    "imgSrc": "./img/books/Live Wire.jpg",
+    "bookTitle": "Live Wire",
+    "description": "When former tennis star Suzze T and her rock star husband, Lex, encounter an anonymous Facebook post questioning the paternity of their unborn child, Lex runs off, and Suzze - at eight months pregnant - asks Myron to save her marriage, and perhaps her husband's life. But when he finds Lex, he also finds someone he wasn't looking for: his sister-in-law, Kitty, who along with Myron's brother abandoned the Bolitar family long ago."
+  },
+  {
+    "id": 3,
+    "authorName": "Viktor Frankl",
+    "publishedDate": "11-12-2005",
+    "imgSrc": "./img/books/Mans Search For Meaning.jpg",
+    "bookTitle": "Mans Search For Meaning",
+    "description": "Psychiatrist Viktor Frankl's memoir has riveted generations of readers with its descriptions of life in Nazi death camps and its lessons for spiritual survival. Between 1942 and 1945 Frankl labored in four different camps, including Auschwitz, while his parents, brother, and pregnant wife perished. Based on his own experience and the experiences of others he treated later in his practice, Frankl argues that we cannot avoid suffering but we can choose how to cope with it, find meaning in it, and move forward with renewed purpose. Frankl's theory-known as logotherapy, from the Greek word logos -holds that our primary drive in life is not pleasure, as Freud maintained, but the discovery and pursuit of what we personally find meaningful."
+  },
+  {
+    "id": 4,
+    "authorName": "Gilbert Byron",
+    "publishedDate": "11-12-2005",
+    "imgSrc": "./img/books/mission-Boy.jpg",
+    "bookTitle": "Mission Boy",
+    "description": "MISSION BOY tells a little-known, true story of early American history. Nearly forty years before the English founded their first permanent colony in the New World, at Jamestown, a small group of Jesuit missionaries sailed north from Havana, Cuba to virtually the same location. Guided by a Native American convert to Christianity whom they called Don Luis, the Jesuits hoped to bring Christianity to the Algonquin Indians and to claim a new territory for King Phillip II of Spain. Their mission did not go according to plan. The Indian guide they depended on slipped back into the forests."
+  },
+  {
+    "id": 5,
+    "authorName": "Aubrey Hansen",
+    "publishedDate": "11-12-2005",
+    "imgSrc": "./img/books/Red Rain.jpg",
+    "bookTitle": "Red Rain",
+    "description": "17-year-old Philadelphia has been imprisoned most of her life because of her Christian beliefs. When her father is sent to Mars against his will to work on a mysterious science project and a benevolent official allows her to accompany him, Philadelphia knows she must keep her head down or be sent back to prison on Earth. But when she stumbles into the wrong hallway and accidentally learns too much, Philadelphia is faced with a question she doesn’t want to answer: the choice between returning to Earth—or destroying it."
+  },
+  {
+    "id": 6,
+    "authorName": "Rudyard Kipling",
+    "publishedDate": "15-02-1992",
+    "imgSrc": "./img/books/The Jungle Book.jpg",
+    "bookTitle": "The Jungle Book",
+    "description": "The tales in the book (as well as those in The Second Jungle Book, which followed in 1895 and includes five further stories about Mowgli) are fables, using animals in an anthropomorphic manner to teach moral lessons. "
+  },
+  {
+    "id": 7,
+    "authorName": "Jannine Gallant",
+    "publishedDate": "15-02-1992",
+    "imgSrc": "./img/books/The Lonely Road.jpg",
+    "bookTitle": "The Lonely Road",
+    "description": "Kate Abbott isn’t looking for excitement and is perfectly content with the secure life she’s built in Seattle, even if her son thinks she’s in an uninspired rut. Former rock star Tyler North has no intention of shaking up his life on the Montana ranch where he fled years before to escape the ravages of fame and fortune. Neither plan to attend their 25 year high school reunion in Summerville, but fate throws them together on a lonely road, leading them on a journey of discovery."
+  },
+  {
+    "id": 8,
+    "authorName": "The Snowman",
+    "publishedDate": "15-04-1999",
+    "imgSrc": "./img/books/The Snow Man.jpg",
+    "bookTitle": "The Snowman",
+    "description": "Internationally acclaimed crime writer Jo Nesbø’s antihero police investigator, Harry Hole, is back: in a bone-chilling thriller that will take Hole to the brink of insanity. "
+  },
+  {
+    "id": 9,
+    "authorName": " J.R.R. Tolkien",
+    "publishedDate": "15-02-1992",
+    "imgSrc": "./img/books/The-Hobbit.jpg",
+    "bookTitle": "The Hobbit",
+    "description": "n a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort."
+  }
+]

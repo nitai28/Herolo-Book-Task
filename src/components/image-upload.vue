@@ -1,64 +1,58 @@
 <template>
-        <section class="todo-list">
-            <input name="filterBtn" checked="checked" id="all" type="radio" @click="changeFilter('All')" />
-            <label for="all"> All</label>
-            <input name="filterBtn" id="active" @click="changeFilter('Active')" type="radio"/>
-            <label for="active"> Active</label>
-            <input name="filterBtn" id="done" @click="changeFilter('Done')" type="radio"/>
-            <label for="done"> Done</label>
-            <div>
-            <input type="search" @input="SearchTodos($event.target.value)"/>
-            </div>
-            <ul>
-                <li  v-for="(todo) in todos" :key="todo.id" class="box todo-li"  :class="{done:todo.isDone}">
-                    <todo-item :currTodo="todo"></todo-item>
-                </li>
-            </ul>
-        </section>
+    <section id="image-up">
+        <div v-if="!image">
+            <h3>Book Cover</h3>
+            <input type="file" @change="onFileChange">
+        </div>
+        <div v-else>
+            <img :src="image"/>
+            <button @click="removeImage">Remove image</button>
+        </div>
+    </section>
 
 
 </template>
 
 <script>
-import todoItem from './todo-item.vue'
 
-export default {
-    data() {
-        return {
-            filter: 'All',
-            todo: {}
-        }
-    },
-    created() {
-        this.$store.dispatch({ type: 'loadTodos' })
-    },
-    computed: {
-        todos() {
-            return this.$store.state.todos;
-        }
-    },
-    methods: {
-        changeFilter(filter) {
-            this.$store.commit({ type: 'changeFilter', filter: filter });
-            this.$store.dispatch({ type: 'loadTodos' })
-
-            // this.$store.dispatch({type:'changeFilter' ,filter:filter});
-
+    export default {
+        data: {
+            image: ''
         },
-        SearchTodos(filter) {
-            this.$store.commit({ type: 'changeFilter', filter: filter });
-            this.$store.dispatch({ type: 'loadTodos' })
+        methods: {
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var vm = this;
+
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImage: function (e) {
+                this.image = '';
+            }
         }
-    },
-    
-    components: {
-        todoItem
     }
-}    
 </script>
 
-<style>
-
+<style scoped>
+    #image-up {
+        text-align: center;
+    }
+    img {
+        width: 30%;
+        margin: auto;
+        display: block;
+        margin-bottom: 10px;
+    }
 </style>
 
 
