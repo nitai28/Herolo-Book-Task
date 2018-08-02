@@ -12,11 +12,6 @@
 
     export default {
         name: "book-app",
-        // data() {
-        //     return {
-        //         selectBook: {}
-        //     }
-        // },
         methods: {},
         components: {
             navBar,

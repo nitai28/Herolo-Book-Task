@@ -5,7 +5,7 @@ function store(key, any) {
         setTimeout(() => {
             localStorage[key] = JSON.stringify(any);
             resolve();
-        }, 200)
+        }, 0)
     });
 
 }
@@ -15,7 +15,7 @@ function load(key) {
         setTimeout(() => {
             var str = localStorage[key] || 'null';
             resolve(JSON.parse(str));
-        }, 200)
+        }, 0)
     });
 }
 

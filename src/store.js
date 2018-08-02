@@ -1,6 +1,6 @@
-import bookService from "./services/book.service.js";
 import Vue from "vue";
 import Vuex from "vuex";
+import bookService from "./services/book.service.js";
 
 Vue.use(Vuex);
 
@@ -8,15 +8,9 @@ export default new Vuex.Store({
     strict: true,
     state: {
         books: [],
-        currentBook: {}
+        currentBook: {},
     },
     mutations: {
-        changeFilter(state, {filter}) {
-            state.filter = filter;
-        },
-        SearchBooks(state, {searchBy}) {
-            state.searchBy = searchBy.toLowerCase();
-        },
         setBooks(state, {books}) {
             state.books = books;
         },
@@ -42,10 +36,12 @@ export default new Vuex.Store({
     },
 
     actions: {
-        loadBooks(store) {
-            bookService.loadDB().then(books => {
-                store.commit({type: "setBooks", books});
-            });
+
+        getBooks(store) {
+            bookService.query()
+                .then(books => {
+                    store.commit({type: 'setBooks', books})
+                })
         },
 
         deletedBook(store, {id}) {

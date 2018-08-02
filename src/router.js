@@ -20,11 +20,11 @@ export default new Router({
             name: "books",
             component: Home
         },
-        {
-            path: "/books/book",
-            name: "Book",
-            component: Book
-        },
+        // {
+        //     path: "/books/:bookId",
+        //     name: "Book",
+        //     component: Book
+        // },
 
 
     ]

@@ -7,7 +7,7 @@
                 <li v-for="(book,idx) in books" :key="book.id">
                     <div class="box book-box" @click="updateCurrentBook(book.id)">
                         <img class="book-img" :src="book.imgSrc" alt="">
-                        <h2>{{book.bookTitle}}</h2>
+                        <h2>{{book.bookTitle|bookTitleToUpperCase|removeNonEnglishLetters}}</h2>
                         <h5>By:{{book.authorName}}</h5>
 
                     </div>
@@ -17,6 +17,7 @@
         </div>
         <book-details v-if="selectedBook" :book="currentBook"
                       @toggleSelectedBook="selectedBook=!selectedBook"></book-details>
+
     </section>
 
 
@@ -41,19 +42,28 @@
                 this.$store.commit({type: 'setSelectedBook', id: id});
                 this.currentBook = this.$store.state.currentBook;
                 this.selectedBook = !this.selectedBook;
-                // this.$router.push('/'+this.currentBook.id)
             },
-
 
         },
         created() {
-            this.$store.dispatch({type: 'loadBooks'});
-
+            this.$store.dispatch({type: 'getBooks'})
         },
+
         computed: {
             books() {
                 return this.$store.getters.booksForDisplay;
             }
+        },
+        filters: {
+            bookTitleToUpperCase(bookName) {
+                return bookName.replace(/\w\S*/g, function (txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                });
+            },
+            removeNonEnglishLetters(bookName) {
+                return bookName.replace(/[^A-Za-z]/g, ' ');
+            },
+
         },
 
         components: {
@@ -84,7 +94,7 @@
     }
 
     .book-img {
-        /*width: 300px;*/
+        width: 300px;
         height: 400px;
         max-height: 100%;
         /*margin-top: 50px;*/

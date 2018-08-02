@@ -16,7 +16,7 @@
                 <button class="button is-link" @click="closeDetailes()">Go Back</button>
             </div>
         </div>
-        <book-edit :isActive="showModal" :book="book" v-if="showModal"></book-edit>
+        <book-edit @closeEditModal="closeDetailes" :isActive="showModal" :book="book" v-if="showModal"></book-edit>
 
     </section>
 
@@ -54,7 +54,7 @@
                 }).then((result) => {
                     if (result.value) {
                         this.deleteCurrBook(this.book.id)
-                        this.$router.push('/')
+                        this.$parent.selectedBook = false
                         this.$swal('Deleted', 'You successfully deleted this file', 'success')
                     } else {
                         this.$swal('Cancelled', 'Your file is still intact', 'info')
@@ -69,15 +69,12 @@
                 return bookName.replace(/\w\S*/g, function (txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
-            }
-            ,
+            },
             removeNonEnglishLetters(bookName) {
                 return bookName.replace(/[^A-Za-z]/g, ' ');
-            }
-            ,
+            },
 
-        }
-        ,
+        },
 
 
         components: {
@@ -195,6 +192,7 @@
         button:last-child {
             margin-bottom: 20px;
         }
+
         .img-book {
             max-height: 60%;
             width: 50%;

@@ -58,7 +58,7 @@
                 this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
                     .then(() => {
                         this.closeModal();
-                        this.$router.push('/books')
+                        this.$emit('closeEditModal')
                     })
             },
 

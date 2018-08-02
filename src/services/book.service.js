@@ -1,12 +1,13 @@
-// import utilService from './util.service.js';
 import storageService from './storage.service.js'
+import axios from 'axios';
 
 const KEY = 'booksAppKey';
 
 
 function loadDB() {
     if (!localStorage[KEY]) {
-        fetch(`./booksDB.json`).then(function (response) {
+        console.log('1');
+         fetch(`./booksDB.json`).then(function (response) {
             response.json().then(books => {
                 localStorage[KEY] = JSON.stringify(books)
             })
@@ -15,13 +16,14 @@ function loadDB() {
     }
     return storageService.load(KEY)
 }
+function query() {
+    return axios.get('booksDb.json')
+        .then(res => {
+            localStorage[KEY] = JSON.stringify(res.data)
+            return res.data;
+        });
 
-// function loadDB() {
-//     return fetch(`./booksDB.json`).then(function (response) {
-//
-//         return response.json();
-//     });
-// }
+}
 
 function getEmptyObj() {
     return {
@@ -44,7 +46,6 @@ function getById(bookId) {
 }
 
 function removeBook(bookId) {
-    console.log(3)
     return storageService.load(KEY).then(books => {
         books = books.filter(book => book.id !== bookId);
         return storageService.store(KEY, books);
@@ -76,5 +77,6 @@ export default {
     getById,
     saveBook,
     removeBook,
-    getEmptyObj
+    getEmptyObj,
+    query
 }
