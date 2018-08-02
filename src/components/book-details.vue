@@ -1,23 +1,15 @@
 <template>
-    <section class="card is-centered">
-        <div class="card-image">
-            <figure class="image ">
-                <img :src="book.imgSrc" alt="">
-            </figure>
+    <section class="book-details">
+        <div class="image-content">
+            <img class="img-book" :src="book.imgSrc" alt="">
         </div>
-        <div class="book-details ">
-            <div class="media-content">
-                <h1 class="title is-4">{{book.bookTitle|bookTitleToUpperCase|removeNonEnglishLetters}}</h1>
-                <h3 class="subtitle is-6">{{book.authorName}}</h3>
-
-            </div>
+        <div class="details">
+            <h1>{{book.bookTitle|bookTitleToUpperCase|removeNonEnglishLetters}}</h1>
+            <h3><span>Author:</span>{{book.authorName}}</h3>
+            <p>{{book.description}}</p>
+            <h3><span>Published At:</span>{{book.publishedDate}}</h3>
             <div>
-                <p>{{book.description}}</p>
-                <h3><span>Published At:</span>{{book.publishedDate}}</h3>
-
-            </div>
-            <div>
-                <div class="content">
+                <div class="buttons-content">
                     <button class="button is-info" @click.stop="showModal=!showModal">Edit</button>
                     <button class="button is-danger" @click="alertDisplay">Delete</button>
                 </div>
@@ -95,6 +87,120 @@
 </script>
 
 <style scoped>
+
+    .image-content {
+        width: 100%;
+        min-width: 50%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-book {
+        max-height: 60%;
+        width: 45%;
+    }
+
+    .book-details {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100%;
+    }
+
+    .book-details p {
+
+        margin: 30px auto 20px;
+        font-size: 20px;
+        max-width: 70%;
+    }
+
+    .details {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        margin-right: 70px;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-size: larger;
+    }
+
+    .buttons-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+    }
+
+    button {
+        width: 70%;
+        margin: 5px;
+        font-size: 28px;
+        padding: 15px;
+        line-height: normal;
+        height: 70px;
+
+    }
+
+    @media (max-width: 980px ) {
+        .book-details {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            width: 100%;
+
+        }
+
+        .image-content {
+            width: 100%;
+            height: 80%;
+            margin: 20px 0 20px;
+        }
+
+        .details {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h3 {
+            font-size: 26px;
+            width: 100%;
+        }
+
+        .buttons-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            width: 45%;
+            margin: 5px;
+        }
+
+        button:last-child {
+            margin-bottom: 20px;
+        }
+        .img-book {
+            max-height: 60%;
+            width: 50%;
+        }
+
+    }
 
 
 </style>
