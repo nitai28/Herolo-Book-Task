@@ -1,17 +1,22 @@
 <template>
     <section class="todo-list">
         <div v-if="!selectedBook">
-            <h1>Herolo Books</h1>
-            <button  @click="toAdd=!toAdd">Add Book</button>
+            <button class="button is-dark" @click="toAdd=!toAdd">Add Book</button>
             <book-edit :addMode="toAdd" v-if="toAdd"></book-edit>
-            <ul>
+            <ul class="book-container">
                 <li v-for="(book,idx) in books" :key="book.id">
-                    <img :src="book.imgSrc" alt="" @click="updateCurrentBook(book.id)">
+                    <div class="box book-box" @click="updateCurrentBook(book.id)">
+                        <img class="book-img" :src="book.imgSrc" alt="">
+                        <h2>{{book.bookTitle}}</h2>
+                        <h5>By:{{book.authorName}}</h5>
+
+                    </div>
                 </li>
             </ul>
 
         </div>
-        <book-details v-if="selectedBook" :book="currentBook" @toggleSelectedBook="selectedBook=!selectedBook"></book-details>
+        <book-details v-if="selectedBook" :book="currentBook"
+                      @toggleSelectedBook="selectedBook=!selectedBook"></book-details>
     </section>
 
 
@@ -28,7 +33,7 @@
             return {
                 selectedBook: false,
                 currentBook: {},
-                toAdd:false,
+                toAdd: false,
             }
         },
         methods: {
@@ -58,7 +63,41 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .book-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .box {
+        background-color: rgb(35, 31, 31);
+        color: white;
+        box-shadow: 0px 2px 2px 2px #fff;
+        margin: 50px 5px;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: larger;
+        letter-spacing: 1.3px;
+    }
+
+    .book-img {
+        /*width: 300px;*/
+        height: 400px;
+        max-height: 100%;
+        /*margin-top: 50px;*/
+    }
+
+    .button {
+
+        margin-top: 52px;
+        width: 137px;
+        height: 54px;
+        font-size: 25px;
+    }
+
 
 </style>
 

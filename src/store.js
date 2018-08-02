@@ -48,10 +48,9 @@ export default new Vuex.Store({
             });
         },
 
-        deleteBook(store, {id}) {
-            bookService.deleteBook(id).then(() => {
+        deletedBook(store, {id}) {
+            bookService.removeBook(id).then(() => {
                 store.commit({type: "deleteBook", id});
-                // store.commit({type: "updateActions", name: "deleteBook"});
             });
         },
         saveBook(store, {book}) {

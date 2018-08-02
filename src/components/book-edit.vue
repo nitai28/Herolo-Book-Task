@@ -22,7 +22,7 @@
                         <textarea class="textarea" id="Desctiption" type="text"
                                   v-model="bookEdit.description"></textarea>
                         <footer class="modal-card-foot">
-                            <button v-if="!addMode" type="submit" class="button is-success">Save changes</button>
+                            <button v-if="!addMode" type="submit" class="button is-success">Save</button>
                             <button v-else type="submit" class="button is-success">Add book</button>
                             <button type="button" class="button" @click="closeModal()">Cancel</button>
                         </footer>
@@ -55,7 +55,7 @@
         methods: {
 
             editBook() {
-               this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
+                this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
                     .then(() => {
                         this.closeModal();
                         this.$router.push('/books')
@@ -64,8 +64,8 @@
 
             closeModal() {
                 this.$parent.showModal = false;
-                if(this.addMode){
-                   this.$parent.toAdd=false
+                if (this.addMode) {
+                    this.$parent.toAdd = false
                 }
             }
 

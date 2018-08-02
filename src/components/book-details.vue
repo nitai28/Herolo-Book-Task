@@ -1,20 +1,27 @@
 <template>
-    <section class="todo-list flex">
-        <div>
-            <img :src="book.imgSrc" alt="">
-
+    <section class="card is-centered">
+        <div class="card-image">
+            <figure class="image ">
+                <img :src="book.imgSrc" alt="">
+            </figure>
         </div>
-        <div class="book-details">
-            <h1>{{book.bookTitle|bookTitleToUpperCase|removeNonEnglishLetters}}</h1>
-            <h3>{{book.authorName}}</h3>
-            <p>{{book.description}}</p>
-            <h3><span>Published At:</span>{{book.publishedDate}}</h3>
+        <div class="book-details ">
+            <div class="media-content">
+                <h1 class="title is-4">{{book.bookTitle|bookTitleToUpperCase|removeNonEnglishLetters}}</h1>
+                <h3 class="subtitle is-6">{{book.authorName}}</h3>
+
+            </div>
             <div>
-                <div>
-                    <button @click.stop="showModal=!showModal">Edit</button>
-                    <button @click="deleteCurrBook(book.id) ">Delete</button>
+                <p>{{book.description}}</p>
+                <h3><span>Published At:</span>{{book.publishedDate}}</h3>
+
+            </div>
+            <div>
+                <div class="content">
+                    <button class="button is-info" @click.stop="showModal=!showModal">Edit</button>
+                    <button class="button is-danger" @click="alertDisplay">Delete</button>
                 </div>
-                <button @click="closeDetailes()">Go Back</button>
+                <button class="button is-link" @click="closeDetailes()">Go Back</button>
             </div>
         </div>
         <book-edit :isActive="showModal" :book="book" v-if="showModal"></book-edit>
@@ -39,9 +46,29 @@
             closeDetailes() {
                 this.$emit('toggleSelectedBook')
             },
-            // deleteCurrBook(id) {
-            //     this.$store.dispatch({type: 'deleteBook', id})
-            // },
+            deleteCurrBook(id) {
+                this.$store.dispatch({type: 'deletedBook', id})
+            },
+            alertDisplay() {
+                this.$swal({
+                    title: 'Are you sure?',
+                    text: 'You can\'t revert your action',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes Delete it!',
+                    cancelButtonText: 'No, Keep it!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                }).then((result) => {
+                    if (result.value) {
+                        this.deleteCurrBook(this.book.id)
+                        this.$router.push('/')
+                        this.$swal('Deleted', 'You successfully deleted this file', 'success')
+                    } else {
+                        this.$swal('Cancelled', 'Your file is still intact', 'info')
+                    }
+                })
+            }
 
 
         },
@@ -50,12 +77,16 @@
                 return bookName.replace(/\w\S*/g, function (txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
-            },
+            }
+            ,
             removeNonEnglishLetters(bookName) {
                 return bookName.replace(/[^A-Za-z]/g, ' ');
-            },
+            }
+            ,
 
-        },
+        }
+        ,
+
 
         components: {
             bookEdit
@@ -63,7 +94,8 @@
     }
 </script>
 
-<style>
+<style scoped>
+
 
 </style>
 

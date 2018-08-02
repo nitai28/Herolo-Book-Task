@@ -13,22 +13,17 @@
     margin: 0;
 }
 
+html{
+    background: #00d1b291;
+
+}
+body{
+}
+
 input {
     padding: 1px;
     margin-bottom: 10px;
 }
 
-.todo-app {
-    width: 50%;
-    height: fit-content;
-    margin: 0 auto;
-    background-color: lightslategray;
-    color: darkblue;
-}
 
-.todo-li {
-    display: flex;
-    justify-content: center;
-    color: rgb(6, 209, 245);
-    background: rgba(56, 63, 63, 0.479);
-}
+

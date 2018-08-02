@@ -43,7 +43,8 @@ function getById(bookId) {
 
 }
 
-function deletebook(bookId) {
+function removeBook(bookId) {
+    console.log(3)
     return storageService.load(KEY).then(books => {
         books = books.filter(book => book.id !== bookId);
         return storageService.store(KEY, books);
@@ -74,6 +75,6 @@ export default {
     loadDB,
     getById,
     saveBook,
-    deletebook,
+    removeBook,
     getEmptyObj
 }
