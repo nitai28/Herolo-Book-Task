@@ -68,6 +68,7 @@
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+                        if(!this.bookEdit.imgSrc) this.bookEdit.imgSrc='./img/books/noimages.png'
                         this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
                             .then(() => {
                                 this.closeModal();
