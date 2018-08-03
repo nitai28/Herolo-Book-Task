@@ -49,7 +49,6 @@
 <script>
     import bookService from '../services/book.service.js'
     import DatePicker from 'vue2-datepicker'
-    import UploadImage from './image-upload';
     import {Validator} from 'vee-validate';
 
     export default {
@@ -94,14 +93,13 @@
             {
                 DatePicker,
                 bookService,
-                UploadImage,
                 Validator
-            }
-        ,
+            },
 
     }
 
 </script>
+
 <style scoped>
     .input {
         text-align: left;
@@ -121,6 +119,10 @@
 
     .modal-background {
         position: fixed;
+    }
+
+    .modal-card {
+        max-width: 80%;
     }
 
 </style>

@@ -57,7 +57,6 @@ export default new Vuex.Store({
                 }
                 else {
                     store.commit({type: "addBook", book});
-                    store.commit({type: "updateActions", name: "addBook"});
                 }
                 return book;
             });

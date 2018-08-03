@@ -4,18 +4,6 @@ import axios from 'axios';
 const KEY = 'booksAppKey';
 
 
-function loadDB() {
-    if (!localStorage[KEY]) {
-        console.log('1');
-         fetch(`./booksDB.json`).then(function (response) {
-            response.json().then(books => {
-                localStorage[KEY] = JSON.stringify(books)
-            })
-
-        })
-    }
-    return storageService.load(KEY)
-}
 function query() {
     return axios.get('booksDb.json')
         .then(res => {
@@ -37,21 +25,12 @@ function getEmptyObj() {
 
 }
 
-
-function getById(bookId) {
-    let books = this.$store.getters.booksForDisplay;
-    console.log(books())
-    return this.$store.state.books.filter(book => book.id === bookId);
-
-}
-
 function removeBook(bookId) {
     return storageService.load(KEY).then(books => {
         books = books.filter(book => book.id !== bookId);
         return storageService.store(KEY, books);
     });
 }
-
 
 function saveBook(book) {
     return new Promise((resolve, reject) => {
@@ -69,12 +48,9 @@ function saveBook(book) {
             });
     });
 
-
 }
 
 export default {
-    loadDB,
-    getById,
     saveBook,
     removeBook,
     getEmptyObj,

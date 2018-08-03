@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify'
 import App from './App.vue'
 import VeeValidate from 'vee-validate';
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -9,7 +8,6 @@ import './registerServiceWorker'
 import './css/bulma.css'
 import './css/main.css'
 
-Vue.use(Vuetify)
 Vue.use(VeeValidate);
 Vue.use(VueSweetalert2);
 Vue.use(require('vue-moment'));

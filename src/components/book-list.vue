@@ -9,7 +9,6 @@
                         <img class="book-img" :src="book.imgSrc" alt="">
                         <h2>{{book.bookTitle|bookTitleToUpperCase|removeNonEnglishLetters}}</h2>
                         <h5>By:{{book.authorName}}</h5>
-
                     </div>
                 </li>
             </ul>
@@ -116,6 +115,8 @@
         width: 100vw;
         height: 100vh;
         position: fixed;
+        top:70px;
+
     }
 
 </style>
