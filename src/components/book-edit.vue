@@ -9,18 +9,28 @@
                     <button class="delete" aria-label="close" @click="closeModal()"></button>
                 </header>
                 <section class="modal-card-body">
-                    <form action="" @submit.prevent="editBook">
+                    <form action="" @submit.prevent="validateBeforeSubmit">
                         <label for="Title">Title</label>
-                        <input class="input" id="Title" type="text" v-model="bookEdit.bookTitle">
+                        <input class="input" id="Title" name="Title" type="text" v-validate.immediate="'required'"
+                               v-model="bookEdit.bookTitle" placeholder="Book Title">
+                        <p class="error-message">{{ errors.first('Title') }}</p>
+
                         <div>
-                            <date-picker lang="en" v-model="bookEdit.publishedDate"></date-picker>
+                            <date-picker lang="en" v-model="bookEdit.publishedDate" input-name="date"
+                                         format="YYYY-MM-DD" :not-after="new Date()"></date-picker>
                         </div>
                         <label for="Author">Author</label>
-                        <input class="input" id="Author" type="text" v-model="bookEdit.authorName">
-                        <!--<upload-image v-if="addMode" url="" name="" max_files="" v-model="bookEdit.imgSrc"></upload-image>-->
+                        <input class="input" id="Author" name="Author" type="text" v-model="bookEdit.authorName"
+                               v-validate.immediate="'required'" placeholder="Book Author Name">
+                        <p v-show="errors.first('Title')" class="error-message">{{ errors.first('Author') }}</p>
+
+
+                        <label for="Book Cover">Book Cover Image</label>
+                        <input class="input" id="Book Cover" type="text" v-model="bookEdit.imgSrc">
+
                         <label for="Desctiption">Desctiption</label>
                         <textarea class="textarea" id="Desctiption" type="text"
-                                  v-model="bookEdit.description"></textarea>
+                                  v-model="bookEdit.description" placeholder="Book Description"></textarea>
                         <footer class="modal-card-foot">
                             <button v-if="!addMode" type="submit" class="button is-success">Save</button>
                             <button v-else type="submit" class="button is-success">Add book</button>
@@ -40,9 +50,9 @@
     import bookService from '../services/book.service.js'
     import DatePicker from 'vue2-datepicker'
     import UploadImage from './image-upload';
+    import {Validator} from 'vee-validate';
 
     export default {
-
         props: ['book', 'isActive', 'addMode'],
         created() {
 
@@ -50,16 +60,25 @@
         data() {
             return {
                 bookEdit: (this.book) ? {...this.book} : bookService.getEmptyObj(),
+                title: '',
+
             }
         },
         methods: {
 
-            editBook() {
-                this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
-                    .then(() => {
-                        this.closeModal();
-                        this.$emit('closeEditModal')
-                    })
+            validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.$store.dispatch({type: 'saveBook', book: this.bookEdit})
+                            .then(() => {
+                                this.closeModal();
+                                this.$emit('closeEditModal')
+                            })
+                        return;
+                    }
+                    this.$swal('Oops...', 'Please fill all the missing fields !', 'error')
+
+                })
             },
 
             closeModal() {
@@ -71,21 +90,29 @@
 
         },
 
-        components: {
-            DatePicker,
-            bookService,
-            UploadImage
-        },
+        components:
+            {
+                DatePicker,
+                bookService,
+                UploadImage,
+                Validator
+            }
+        ,
 
     }
 
 </script>
 <style scoped>
-    /*.modal {*/
-    /*background-color: rgba(0, 0, 0, 0.65);*/
-    /*width: 100vw;*/
-    /*height: 100vh;*/
-    /*z-index: 1;*/
-    /*position: absolute;*/
-    /*}*/
+    .input {
+        text-align: left;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: -5px;
+        font-size: 12px;
+        margin-bottom: 9px;
+    }
+
+
 </style>

@@ -12,6 +12,8 @@ import './css/main.css'
 Vue.use(Vuetify)
 Vue.use(VeeValidate);
 Vue.use(VueSweetalert2);
+Vue.use(require('vue-moment'));
+
 Vue.config.productionTip = false
 
 new Vue({

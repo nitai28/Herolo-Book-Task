@@ -15,7 +15,7 @@
         name: "navbar",
         methods:{
             linkToHomePage(){
-                this.$router.push('/books')
+                this.$router.push('/')
             }
         }
     }

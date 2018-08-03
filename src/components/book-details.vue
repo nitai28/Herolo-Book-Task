@@ -7,7 +7,7 @@
             <h1>{{book.bookTitle|bookTitleToUpperCase|removeNonEnglishLetters}}</h1>
             <h3><span>Author:</span>{{book.authorName}}</h3>
             <p>{{book.description}}</p>
-            <h3><span>Published At:</span>{{book.publishedDate}}</h3>
+            <h3><span>Published At:</span>{{book.publishedDate| moment("D/M/Y")}}</h3>
             <div>
                 <div class="buttons-content">
                     <button class="button is-info" @click.stop="showModal=!showModal">Edit</button>
@@ -73,6 +73,7 @@
             removeNonEnglishLetters(bookName) {
                 return bookName.replace(/[^A-Za-z]/g, ' ');
             },
+
 
         },
 

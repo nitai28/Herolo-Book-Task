@@ -30,7 +30,7 @@ function getEmptyObj() {
         id: '',
         authorName: '',
         publishedDate: '',
-        imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Naaria3.jpg',
+        imgSrc: '',
         bookTitle: '',
         description: ''
     }

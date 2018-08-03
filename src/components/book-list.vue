@@ -1,5 +1,5 @@
 <template>
-    <section class="todo-list">
+    <section >
         <div v-if="!selectedBook">
             <button class="button is-dark" @click="toAdd=!toAdd">Add Book</button>
             <book-edit :addMode="toAdd" v-if="toAdd"></book-edit>
@@ -97,7 +97,6 @@
         width: 300px;
         height: 400px;
         max-height: 100%;
-        /*margin-top: 50px;*/
     }
 
     .button {
@@ -107,6 +106,11 @@
         height: 54px;
         font-size: 25px;
     }
+
+    .book-box {
+        cursor: pointer;
+    }
+
 
 
 </style>
