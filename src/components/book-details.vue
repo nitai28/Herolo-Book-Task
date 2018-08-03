@@ -13,7 +13,7 @@
                     <button class="button is-info" @click.stop="showModal=!showModal">Edit</button>
                     <button class="button is-danger" @click="alertDisplay">Delete</button>
                 </div>
-                <button class="button is-link" @click="closeDetailes()">Go Back</button>
+                <button class="button is-link" @click="closeDetailes()">Back</button>
             </div>
         </div>
         <book-edit @closeEditModal="closeDetailes" :isActive="showModal" :book="book" v-if="showModal"></book-edit>

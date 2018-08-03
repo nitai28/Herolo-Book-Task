@@ -107,6 +107,11 @@
         text-align: left;
     }
 
+    .textarea {
+        text-align: left;
+
+    }
+
     .error-message {
         color: red;
         margin-top: -5px;
@@ -114,5 +119,8 @@
         margin-bottom: 9px;
     }
 
+    .modal-background {
+        position: fixed;
+    }
 
 </style>

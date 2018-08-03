@@ -46,6 +46,18 @@
         line-height: 102px;
         margin-right: 8px;
     }
+    @media (max-width: 430px) {
+        img{
+            max-width: 60px;
+            margin-top: 31px;
+
+        }
+        span{
+            line-height: 116px;
+            font-size: 60px;
+        }
+
+    }
 
 
 </style>

@@ -2,7 +2,7 @@
     <section >
         <div v-if="!selectedBook">
             <button class="button is-dark" @click="toAdd=!toAdd">Add Book</button>
-            <book-edit :addMode="toAdd" v-if="toAdd"></book-edit>
+            <book-edit class="add-modal" :addMode="toAdd" v-if="toAdd"></book-edit>
             <ul class="book-container">
                 <li v-for="(book,idx) in books" :key="book.id">
                     <div class="box book-box" @click="updateCurrentBook(book.id)">
@@ -112,6 +112,11 @@
     }
 
 
+    .add-modal {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+    }
 
 </style>
 
